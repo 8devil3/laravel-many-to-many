@@ -5,12 +5,30 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\Category;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Tag;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
+   private function getValidators($model) {
+      return [
+          // 'user_id'   => 'required|exists:App\User,id',
+          'title'         => 'required|max:100',
+          'slug'          => [
+              'required',
+              Rule::unique('posts')->ignore($model),
+              'max:100'
+          ],
+          'category_id'   => 'required|exists:App\Category,id',
+          'content'       => 'required',
+          'tags'          => 'exists:App\Tag,id'
+      ];
+  }
+
+
+
    /**
     * Display a listing of the resource.
     *
