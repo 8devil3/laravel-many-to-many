@@ -30,7 +30,6 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                                <p>Default password FakerPHP users: <em>qwerty</em></p>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -50,6 +49,14 @@
                                     </label>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="form-group row">
+                           <div class="col-md-6 offset-md-4">
+                              <hr>
+                              <p>Default user: <em>demo@demo</em><br>Default password: <em>qwerty</em></p>
+                              <hr>
+                           </div>
                         </div>
 
                         <div class="form-group row mb-0">
