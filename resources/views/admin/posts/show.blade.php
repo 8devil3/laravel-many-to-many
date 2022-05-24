@@ -8,6 +8,16 @@
       <p>Author: <span style="color: #3962d1">{{ $post->user->name }}</span> | City: <span style="color: #3962d1">{{ $post->user->user_info->city }}</span></p>
       <time>{{ date('d/m/Y', strtotime($post->date)) }}</time>
       <p class="mt-4">{{ $post->content }}</p>
+
+      <hr>
+
+      <div class="d-flex flex-wrap">
+         <span class="me-2">Tags:</span>
+         @foreach ($post->tags as $tag)
+            <span class="badge bg-primary fs-6 m-1">{{ $tag->name }}</span>
+         @endforeach
+      </div>
+
       <hr>
 
       <!-- Edit btn -->

@@ -14,16 +14,15 @@ class PostController extends Controller
 {
    private function getValidators($model) {
       return [
-          // 'user_id'   => 'required|exists:App\User,id',
-          'title'         => 'required|max:100',
-          'slug'          => [
-              'required',
-              Rule::unique('posts')->ignore($model),
-              'max:100'
-          ],
-          'category_id'   => 'required|exists:App\Category,id',
-          'content'       => 'required',
-          'tags'          => 'exists:App\Tag,id'
+         'title' => 'required|max:100',
+         'slug' => [
+            'required',
+            Rule::unique('posts')->ignore($model),
+            'max:100'
+         ],
+         'category_id' => 'required|exists:App\Category,id',
+         'content' => 'required',
+         'tags'  => 'exists:App\Tag,id'
       ];
   }
 
