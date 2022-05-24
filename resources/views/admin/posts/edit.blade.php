@@ -42,6 +42,18 @@
       @enderror
    </div>
 
+   <div class="mb-3">
+      {{-- source: https://www.cssscript.com/tags-input-bootstrap-5/ --}}
+      <select class="form-select" id="input-tags" name="tags[]" aria-describedby="tags" multiple>
+         <option selected disabled hidden value="">Tags</option>
+         @foreach ($tags as $tag)
+            <option value="{{ $tag->id }}" data-badge-style="success" @if (in_array($tag->id, old('tags', $post->tags->pluck('id')->all()))) selected @endif>{{ $tag->name }}</option>
+         @endforeach
+      </select>
+
+      <div class="alert alert-danger invalid-feedback">Select valid tags</div>
+   </div>
+
 
    <button type="submit" class="btn btn-success">Save</button>
 

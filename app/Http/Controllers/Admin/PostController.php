@@ -14,11 +14,11 @@ class PostController extends Controller
 {
    private function getValidators($model) {
       return [
-         'title' => 'required|max:100',
+         'title' => 'required|max:255',
          'slug' => [
             'required',
             Rule::unique('posts')->ignore($model),
-            'max:100'
+            'max:255'
          ],
          'category_id' => 'required|exists:App\Category,id',
          'content' => 'required',
@@ -94,7 +94,14 @@ class PostController extends Controller
    {
       //per evitare modifiche non autorizzate di utenti esterni
       if (Auth::user()->id !== $post->user_id) abort(403);
-      return view('admin.posts.edit', compact('post'));
+
+      $categories = Category::all();
+      $tags = Tag::all();
+      return view('admin.posts.edit', [
+         'post' => $post,
+         'categories' => $categories,
+         'tags' => $tags
+      ]);
    }
 
    /**
@@ -106,7 +113,15 @@ class PostController extends Controller
     */
    public function update(Request $request, Post $post)
    {
-      $post->update($request->all());
+      if (Auth::user()->id !== $post->user_id) abort(403);
+
+      // $request->validate($this->getValidators($post));
+
+      $data = $request->all();
+
+      $post->update($data);
+      $post->tags()->sync($data['tags']);
+
       return redirect()->route('admin.posts.show', $post->slug);
    }
 
