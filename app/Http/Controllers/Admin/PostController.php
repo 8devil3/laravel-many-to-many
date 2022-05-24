@@ -34,7 +34,7 @@ class PostController extends Controller
       $categories = Category::all();
       $tags = Tag::all();
       return view('admin.posts.create', [
-         'catgories' => $categories,
+         'categories' => $categories,
          'tags' => $tags
       ]);
    }

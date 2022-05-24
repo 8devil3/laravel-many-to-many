@@ -5093,39 +5093,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/bootstrap/dist/js/bootstrap.esm.js":
 /*!*********************************************************!*\
   !*** ./node_modules/bootstrap/dist/js/bootstrap.esm.js ***!
@@ -27832,165 +27799,6 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*******************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function () {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component"),
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              ),
-            ]),
-          ]),
-        ]),
-      ]),
-    ])
-  },
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode /* vue-cli only */
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () {
-        injectStyles.call(
-          this,
-          (options.functional ? this.parent : this).$root.$options.shadowRoot
-        )
-      }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functional component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/vue/dist/vue.common.dev.js":
 /*!*************************************************!*\
   !*** ./node_modules/vue/dist/vue.common.dev.js ***!
@@ -40094,9 +39902,12 @@ module.exports = function(module) {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _tags_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tags.js */ "./resources/js/tags.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -40117,8 +39928,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
  */
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -40166,7 +39977,10 @@ btnDel.forEach(function (btn) {
     } else {//nothing
     }
   });
-});
+}); //importo il js per trasformare gli input select multipli in tag. Source: https://www.cssscript.com/tags-input-bootstrap-5/
+
+
+_tags_js__WEBPACK_IMPORTED_MODULE_0__["default"].init('#input-tags');
 
 /***/ }),
 
@@ -40214,72 +40028,1300 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue ***!
-  \******************************************************/
+/***/ "./resources/js/tags.js":
+/*!******************************!*\
+  !*** ./resources/js/tags.js ***!
+  \******************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+/**
+ * Bootstrap 5 (and 4!) tags
+ *
+ * Turns your select[multiple] into nice tags lists
+ *
+ * Required Bootstrap 5 styles:
+ * - badge
+ * - background-color utility
+ * - margin-end utility
+ * - float-start utility
+ * - forms
+ * - dropdown
+ */
+var ACTIVE_CLASS = "is-active";
+var ACTIVE_CLASSES = ["is-active", "bg-primary", "text-white"];
+var VALUE_ATTRIBUTE = "data-value"; // Static map will minify very badly as class prop, so we use an external constant
+
+var INSTANCE_MAP = new WeakMap();
+
+var Tags = /*#__PURE__*/function () {
+  /**
+   * @param {HTMLSelectElement} el
+   * @param {Object} globalOpts
+   */
+  function Tags(el) {
+    var _this = this;
+
+    var globalOpts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    _classCallCheck(this, Tags);
+
+    // Hide the select element and register a tags attr
+    el.style.display = "none";
+    INSTANCE_MAP.set(el, this);
+    this._selectElement = el; // Allow 1/0, true/false as strings
+
+    var parseBool = function parseBool(value) {
+      return ["true", "false", "1", "0", true, false].includes(value) && !!JSON.parse(value);
+    }; // Handle options, using global settings first and data attr override
 
 
+    var opts = _objectSpread(_objectSpread({}, globalOpts), el.dataset);
+
+    this.allowNew = opts.allowNew ? parseBool(opts.allowNew) : false;
+    this.showAllSuggestions = opts.showAllSuggestions ? parseBool(opts.showAllSuggestions) : false;
+    this.badgeStyle = opts.badgeStyle || "primary";
+    this.allowClear = opts.allowClear ? parseBool(opts.allowClear) : false;
+    this.server = opts.server || false;
+    this.liveServer = opts.liveServer ? parseBool(opts.liveServer) : false;
+    this.serverParams = opts.serverParams || {};
+
+    if (typeof this.serverParams == "string") {
+      this.serverParams = JSON.parse(this.serverParams);
+    }
+
+    this.selected = opts.selected ? opts.selected.split(",") : [];
+    this.suggestionsThreshold = typeof opts.suggestionsThreshold != "undefined" ? parseInt(opts.suggestionsThreshold) : 1;
+    this.validationRegex = opts.regex || "";
+    this.separator = opts.separator ? opts.separator.split("|") : [];
+    this.max = opts.max ? parseInt(opts.max) : null;
+    this.clearLabel = opts.clearLabel || "Clear";
+    this.searchLabel = opts.searchLabel || "Type a value";
+    this.valueField = opts.valueField || "value";
+    this.labelField = opts.labelField || "label";
+    this.keepOpen = opts.keepOpen ? parseBool(opts.keepOpen) : false;
+    this.fullWidth = opts.fullWidth ? parseBool(opts.fullWidth) : false;
+    this.debounceTime = opts.debounceTime ? parseInt(opts.debounceTime) : 300;
+    this.placeholder = opts.placeholder || this._getPlaceholder();
+    this._keyboardNavigation = false;
+    this._fireEvents = true;
+    this._searchFunc = Tags.debounce(function () {
+      _this._loadFromServer(true);
+    }, this.debounceTime);
+    this.overflowParent = null;
+    this.parentForm = el.parentElement;
+
+    while (this.parentForm) {
+      if (this.parentForm.style.overflow === "hidden") {
+        this.overflowParent = this.parentForm;
+      }
+
+      this.parentForm = this.parentForm.parentElement;
+
+      if (this.parentForm && this.parentForm.nodeName == "FORM") {
+        break;
+      }
+    }
+
+    this.reset = this.reset.bind(this);
+
+    if (this.parentForm) {
+      this.parentForm.addEventListener("reset", this.reset);
+    } // Create elements
 
 
+    this._holderElement = document.createElement("div"); // this is the one holding the fake input and the dropmenu
 
-/* normalize component */
+    this._containerElement = document.createElement("div"); // this is the one for the fake input (labels + input)
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
+    this._dropElement = document.createElement("ul");
+    this._searchInput = document.createElement("input");
 
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/ExampleComponent.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+    this._holderElement.appendChild(this._containerElement);
 
-/***/ }),
+    this._containerElement.appendChild(this._searchInput);
 
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+    this._holderElement.appendChild(this._dropElement); // insert after select
 
 
+    this._selectElement.parentNode.insertBefore(this._holderElement, this._selectElement.nextSibling); // Configure them
+
+
+    this._configureHolderElement();
+
+    this._configureDropElement();
+
+    this._configureContainerElement();
+
+    this._configureSearchInput();
+
+    this.resetState();
+
+    if (this.server && !this.liveServer) {
+      this._loadFromServer();
+    } else {
+      this.resetSuggestions();
+    }
+  }
+  /**
+   * Attach to all elements matched by the selector
+   * @param {string} selector
+   * @param {Object} opts
+   */
+
+
+  _createClass(Tags, [{
+    key: "dispose",
+    value: function dispose() {
+      INSTANCE_MAP["delete"](this._selectElement);
+      this._selectElement.style.display = "block";
+
+      this._holderElement.parentNode.removeChild(this._holderElement);
+
+      if (this.parentForm) {
+        this.parentForm.removeEventListener("reset", this.reset);
+      }
+    }
+  }, {
+    key: "resetState",
+    value: function resetState() {
+      if (this.isDisabled()) {
+        this._holderElement.setAttribute("readonly", "");
+
+        this._searchInput.setAttribute("disabled", "");
+      } else {
+        if (this._holderElement.hasAttribute("readonly")) {
+          this._holderElement.removeAttribute("readonly");
+        }
+
+        if (this._searchInput.hasAttribute("disabled")) {
+          this._searchInput.removeAttribute("disabled");
+        }
+      }
+    }
+  }, {
+    key: "resetSuggestions",
+    value: function resetSuggestions() {
+      var suggestions = Array.from(this._selectElement.querySelectorAll("option")).filter(function (option) {
+        return !option.disabled;
+      }).map(function (option) {
+        return {
+          value: option.getAttribute("value"),
+          label: option.textContent
+        };
+      });
+
+      this._buildSuggestions(suggestions);
+    }
+    /**
+     * @param {boolean} show
+     */
+
+  }, {
+    key: "_loadFromServer",
+    value: function _loadFromServer() {
+      var _this2 = this;
+
+      var show = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+      if (this._abortController) {
+        this._abortController.abort();
+      }
+
+      this._abortController = new AbortController();
+      this.serverParams.query = this._searchInput.value;
+      var params = new URLSearchParams(this.serverParams).toString();
+      fetch(this.server + "?" + params, {
+        signal: this._abortController.signal
+      }).then(function (r) {
+        return r.json();
+      }).then(function (suggestions) {
+        var data = suggestions.data || suggestions;
+
+        _this2._buildSuggestions(data);
+
+        _this2._abortController = null;
+
+        if (show) {
+          _this2._showSuggestions();
+        }
+      })["catch"](function (e) {
+        if (e.name === "AbortError") {
+          return;
+        }
+
+        console.error(e);
+      });
+    }
+    /**
+     * @returns {string}
+     */
+
+  }, {
+    key: "_getPlaceholder",
+    value: function _getPlaceholder() {
+      // Use placeholder and data-placeholder in priority
+      if (this._selectElement.hasAttribute("placeholder")) {
+        return this._selectElement.getAttribute("placeholder");
+      }
+
+      if (this._selectElement.dataset.placeholder) {
+        return this._selectElement.dataset.placeholder;
+      } // Fallback to first option if no value
+
+
+      var firstOption = this._selectElement.querySelector("option");
+
+      if (!firstOption) {
+        return "";
+      }
+
+      if (firstOption.hasAttribute("selected")) {
+        firstOption.removeAttribute("selected");
+      }
+
+      return !firstOption.value ? firstOption.textContent : "";
+    }
+  }, {
+    key: "_configureDropElement",
+    value: function _configureDropElement() {
+      var _this$_dropElement$cl,
+          _this3 = this;
+
+      (_this$_dropElement$cl = this._dropElement.classList).add.apply(_this$_dropElement$cl, ["dropdown-menu", "p-0"]);
+
+      this._dropElement.style.maxHeight = "280px";
+
+      if (!this.fullWidth) {
+        this._dropElement.style.maxWidth = "360px";
+      }
+
+      this._dropElement.style.overflowY = "auto"; // If the mouse was outside, entering remove keyboard nav mode
+
+      this._dropElement.addEventListener("mouseenter", function (event) {
+        _this3._keyboardNavigation = false;
+      });
+    }
+  }, {
+    key: "_configureHolderElement",
+    value: function _configureHolderElement() {
+      var _this$_holderElement$;
+
+      (_this$_holderElement$ = this._holderElement.classList).add.apply(_this$_holderElement$, ["form-control", "dropdown"]);
+
+      if (this._selectElement.classList.contains("form-select-lg")) {
+        this._holderElement.classList.add("form-control-lg");
+      }
+
+      if (this._selectElement.classList.contains("form-select-sm")) {
+        this._holderElement.classList.add("form-control-sm");
+      } // If we don't have an overflow parent, we can simply inherit styles
+      // If we have an overflow parent, it needs a relatively positioned element
+
+
+      if (this.overflowParent) {
+        this._holderElement.style.position = "inherit";
+      }
+
+      if (this._getBootstrapVersion() === 4) {
+        // Prevent fixed height due to form-control
+        this._holderElement.style.height = "auto";
+      }
+    }
+  }, {
+    key: "_configureContainerElement",
+    value: function _configureContainerElement() {
+      var _this4 = this;
+
+      this._containerElement.addEventListener("click", function (event) {
+        if (_this4.isDisabled()) {
+          return;
+        }
+
+        if (_this4._searchInput.style.visibility != "hidden") {
+          _this4._searchInput.focus();
+        }
+      }); // add initial values
+      // we use selectedOptions because single select can have a selected option
+      // without a selected attribute if it's the first value
+
+
+      var initialValues = this._selectElement.selectedOptions;
+
+      for (var j = 0; j < initialValues.length; j++) {
+        var initialValue = initialValues[j];
+
+        if (!initialValue.value) {
+          continue;
+        } // track initial values for reset
+
+
+        initialValue.dataset.init = 1;
+        this.addItem(initialValue.textContent, initialValue.value);
+      }
+    }
+  }, {
+    key: "_configureSearchInput",
+    value: function _configureSearchInput() {
+      var _this5 = this;
+
+      this._searchInput.type = "text";
+      this._searchInput.autocomplete = "off";
+      this._searchInput.spellcheck = false;
+      this._searchInput.style.backgroundColor = "transparent";
+      this._searchInput.style.border = 0;
+      this._searchInput.style.outline = 0;
+      this._searchInput.style.maxWidth = "100%";
+      this._searchInput.ariaLabel = this.searchLabel;
+
+      this._resetSearchInput(true);
+
+      this._searchInput.addEventListener("input", function (event) {
+        // Add item if a separator is used
+        // On mobile or copy paste, it can pass multiple chars (eg: when pressing space and it formats the string)
+        if (event.data) {
+          var lastChar = event.data.slice(-1);
+
+          if (_this5.separator.length && _this5._searchInput.value && _this5.separator.includes(lastChar)) {
+            // Remove separator even if adding is prevented
+            _this5._searchInput.value = _this5._searchInput.value.slice(0, -1);
+            var text = _this5._searchInput.value;
+
+            _this5._add(text, null);
+
+            return;
+          }
+        } // Adjust input width to current content
+
+
+        _this5._adjustWidth(); // Check if we should display suggestions
+
+
+        if (_this5._searchInput.value.length >= _this5.suggestionsThreshold) {
+          if (_this5.liveServer) {
+            _this5._searchFunc();
+          } else {
+            _this5._showSuggestions();
+          }
+        } else {
+          _this5._hideSuggestions();
+        }
+      });
+
+      this._searchInput.addEventListener("focus", function (event) {
+        if (_this5._searchInput.value.length >= _this5.suggestionsThreshold) {
+          _this5._showSuggestions();
+        }
+      });
+
+      this._searchInput.addEventListener("focusout", function (event) {
+        _this5._hideSuggestions();
+
+        if (_this5.keepOpen) {
+          _this5._resetSearchInput();
+        }
+      }); // keypress doesn't send arrow keys, so we use keydown
+
+
+      this._searchInput.addEventListener("keydown", function (event) {
+        // Keycode reference : https://css-tricks.com/snippets/javascript/javascript-keycodes/
+        var key = event.keyCode || event.key; // Keyboard keys
+
+        switch (key) {
+          case 13:
+          case "Enter":
+            event.preventDefault();
+
+            var selection = _this5.getActiveSelection();
+
+            if (selection) {
+              selection.click();
+            } else {
+              // We use what is typed if not selected and not empty
+              if (_this5.allowNew && _this5._searchInput.value) {
+                var text = _this5._searchInput.value;
+
+                _this5._add(text, null);
+              }
+            }
+
+            break;
+
+          case 38:
+          case "ArrowUp":
+            event.preventDefault();
+            _this5._keyboardNavigation = true;
+
+            var newSelection = _this5._moveSelectionUp(); // If we use arrow up without input and there is no new selection, hide suggestions
+
+
+            if (_this5._searchInput.value.length == 0 && _this5._dropElement.classList.contains("show") && !newSelection) {
+              _this5._hideSuggestions();
+            }
+
+            break;
+
+          case 40:
+          case "ArrowDown":
+            event.preventDefault();
+            _this5._keyboardNavigation = true;
+
+            _this5._moveSelectionDown(); // If we use arrow down without input, show suggestions
+
+
+            if (_this5._searchInput.value.length == 0 && !_this5._dropElement.classList.contains("show")) {
+              _this5._showSuggestions();
+            }
+
+            break;
+
+          case 8:
+          case "Backspace":
+            if (_this5._searchInput.value.length == 0) {
+              _this5.removeLastItem();
+
+              _this5._adjustWidth();
+
+              _this5._hideSuggestions();
+            }
+
+            break;
+
+          case 27:
+          case "Escape":
+            // We may wish to not use the suggestions
+            _this5._hideSuggestions();
+
+            break;
+        }
+      });
+    }
+    /**
+     * @param {string} text
+     * @param {string} value
+     * @param {object} data
+     */
+
+  }, {
+    key: "_add",
+    value: function _add(text) {
+      var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+      if (!this.canAdd(text, value)) {
+        return;
+      }
+
+      this.addItem(text, value, data);
+
+      if (this.keepOpen) {
+        this._showSuggestions();
+      } else {
+        this._resetSearchInput();
+      }
+    }
+    /**
+     * @returns {HTMLElement}
+     */
+
+  }, {
+    key: "_moveSelectionUp",
+    value: function _moveSelectionUp() {
+      var active = this.getActiveSelection();
+
+      if (active) {
+        var _active$classList, _prev$querySelector$c;
+
+        var prev = active.parentNode;
+
+        do {
+          prev = prev.previousSibling;
+        } while (prev && prev.style.display == "none");
+
+        if (!prev) {
+          return null;
+        }
+
+        (_active$classList = active.classList).remove.apply(_active$classList, ACTIVE_CLASSES);
+
+        (_prev$querySelector$c = prev.querySelector("a").classList).add.apply(_prev$querySelector$c, ACTIVE_CLASSES); // Don't use scrollIntoView as it scrolls the whole window
+
+
+        prev.parentNode.scrollTop = prev.offsetTop - prev.parentNode.offsetTop;
+        return prev;
+      }
+
+      return null;
+    }
+    /**
+     * @returns {HTMLElement}
+     */
+
+  }, {
+    key: "_moveSelectionDown",
+    value: function _moveSelectionDown() {
+      var active = this.getActiveSelection();
+      var next = null;
+
+      if (active) {
+        var _active$classList2, _next$querySelector$c;
+
+        next = active.parentNode;
+
+        do {
+          next = next.nextSibling;
+        } while (next && next.style.display == "none");
+
+        if (!next) {
+          return null;
+        }
+
+        (_active$classList2 = active.classList).remove.apply(_active$classList2, ACTIVE_CLASSES);
+
+        (_next$querySelector$c = next.querySelector("a").classList).add.apply(_next$querySelector$c, ACTIVE_CLASSES); // This is the equivalent of scrollIntoView(false) but only for parent node
+
+
+        if (next.offsetTop > next.parentNode.offsetHeight - next.offsetHeight) {
+          next.parentNode.scrollTop += next.offsetHeight;
+        }
+
+        return next;
+      }
+
+      return next;
+    }
+    /**
+     * @param {string} text
+     * @param {string} size
+     * @returns {Number}
+     */
+
+  }, {
+    key: "_calcTextWidth",
+    value: function _calcTextWidth(text) {
+      var size = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      var span = document.createElement("span");
+      document.body.appendChild(span);
+      span.style.fontSize = size || "inherit";
+      span.style.height = "auto";
+      span.style.width = "auto";
+      span.style.position = "absolute";
+      span.style.whiteSpace = "no-wrap";
+      span.innerHTML = text;
+      var width = Math.ceil(span.clientWidth) + 8;
+      document.body.removeChild(span);
+      return width;
+    }
+    /**
+     * Adjust the field to fit its content and show/hide placeholder if needed
+     */
+
+  }, {
+    key: "_adjustWidth",
+    value: function _adjustWidth() {
+      if (this._searchInput.value) {
+        this._searchInput.size = this._searchInput.value.length;
+      } else {
+        // Show the placeholder only if empty
+        if (this.getSelectedValues().length) {
+          this._searchInput.placeholder = "";
+          this._searchInput.size = 1;
+        } else {
+          this._searchInput.size = this.placeholder.length > 0 ? this.placeholder.length : 1;
+          this._searchInput.placeholder = this.placeholder;
+        }
+      } // If the string contains ascii chars or strange font, input size may be wrong
+
+
+      var v = this._searchInput.value || this._searchInput.placeholder;
+      var computedFontSize = window.getComputedStyle(this._holderElement).fontSize;
+
+      var w = this._calcTextWidth(v, computedFontSize);
+
+      this._searchInput.style.minWidth = w + "px";
+    }
+    /**
+     * Add suggestions to the drop element
+     * @param {array} suggestions
+     */
+
+  }, {
+    key: "_buildSuggestions",
+    value: function _buildSuggestions() {
+      var _this6 = this;
+
+      var suggestions = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
+      while (this._dropElement.lastChild) {
+        this._dropElement.removeChild(this._dropElement.lastChild);
+      }
+
+      var _loop = function _loop(i) {
+        var _newChildLink$classLi;
+
+        var suggestion = suggestions[i];
+
+        if (!suggestion[_this6.valueField]) {
+          return "continue";
+        } // initial selection
+
+
+        if (suggestion.selected || _this6.selected.includes(suggestion[_this6.valueField])) {
+          _this6._add(suggestion[_this6.labelField], suggestion[_this6.valueField], suggestion.data);
+
+          return "continue"; // no need to add as suggestion
+        }
+
+        var newChild = document.createElement("li");
+        var newChildLink = document.createElement("a");
+        newChild.append(newChildLink);
+
+        (_newChildLink$classLi = newChildLink.classList).add.apply(_newChildLink$classLi, ["dropdown-item", "text-truncate"]);
+
+        newChildLink.setAttribute(VALUE_ATTRIBUTE, suggestion[_this6.valueField]);
+        newChildLink.setAttribute("href", "#");
+        newChildLink.textContent = suggestion[_this6.labelField];
+
+        if (suggestion.data) {
+          for (var _i = 0, _Object$entries = Object.entries(suggestion.data); _i < _Object$entries.length; _i++) {
+            var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+                key = _Object$entries$_i[0],
+                value = _Object$entries$_i[1];
+
+            newChildLink.dataset[key] = value;
+          }
+        }
+
+        _this6._dropElement.appendChild(newChild); // Hover sets active item
+
+
+        newChildLink.addEventListener("mouseenter", function (event) {
+          var _newChild$querySelect;
+
+          // Don't trigger enter if using arrows
+          if (_this6._keyboardNavigation) {
+            return;
+          }
+
+          _this6.removeActiveSelection();
+
+          (_newChild$querySelect = newChild.querySelector("a").classList).add.apply(_newChild$querySelect, ACTIVE_CLASSES);
+        }); // Moving the mouse means no longer using keyboard
+
+        newChildLink.addEventListener("mousemove", function (event) {
+          _this6._keyboardNavigation = false;
+        });
+        newChildLink.addEventListener("mousedown", function (event) {
+          // Otherwise searchInput would lose focus and close the menu
+          event.preventDefault();
+        });
+        newChildLink.addEventListener("click", function (event) {
+          event.preventDefault();
+
+          _this6._add(newChildLink.textContent, newChildLink.getAttribute(VALUE_ATTRIBUTE), newChildLink.dataset);
+        });
+      };
+
+      for (var i = 0; i < suggestions.length; i++) {
+        var _ret = _loop(i);
+
+        if (_ret === "continue") continue;
+      }
+    }
+  }, {
+    key: "reset",
+    value: function reset() {
+      this.removeAll(); // Reset doesn't fire change event
+
+      this._fireEvents = false;
+
+      var initialValues = this._selectElement.querySelectorAll("option[data-init]");
+
+      for (var j = 0; j < initialValues.length; j++) {
+        var initialValue = initialValues[j];
+        this.addItem(initialValue.textContent, initialValue.value);
+      }
+
+      this._adjustWidth();
+
+      this._fireEvents = true;
+    }
+    /**
+     * @param {bool} init Pass true during init
+     */
+
+  }, {
+    key: "_resetSearchInput",
+    value: function _resetSearchInput() {
+      var init = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      this._searchInput.value = "";
+
+      this._adjustWidth();
+
+      if (!init) {
+        this._hideSuggestions(); // Trigger input even to show suggestions if needed
+
+
+        this._searchInput.dispatchEvent(new Event("input"));
+      } // We use visibility instead of display to keep layout intact
+
+
+      if (this.max && this.getSelectedValues().length >= this.max) {
+        this._searchInput.style.visibility = "hidden";
+      } else if (this._searchInput.style.visibility == "hidden") {
+        this._searchInput.style.visibility = "visible";
+      }
+
+      if (this.isSingle() && !init) {
+        document.activeElement.blur();
+      }
+    }
+    /**
+     * @returns {array}
+     */
+
+  }, {
+    key: "getSelectedValues",
+    value: function getSelectedValues() {
+      // option[selected] is used rather that selectedOptions as it works more consistently
+      var selected = this._selectElement.querySelectorAll("option[selected]");
+
+      return Array.from(selected).map(function (el) {
+        return el.value;
+      });
+    }
+    /**
+     * The element create with buildSuggestions
+     */
+
+  }, {
+    key: "_showSuggestions",
+    value: function _showSuggestions() {
+      if (this._searchInput.style.visibility == "hidden") {
+        return;
+      } // Get search value
+
+
+      var search = this._searchInput.value.toLocaleLowerCase(); // Get current values
+
+
+      var values = this.getSelectedValues(); // Filter the list according to search string
+
+      var list = this._dropElement.querySelectorAll("li");
+
+      var found = false;
+      var firstItem = null;
+      var hasPossibleValues = false;
+
+      for (var i = 0; i < list.length; i++) {
+        var _link$classList;
+
+        var item = list[i];
+        var text = item.textContent.toLocaleLowerCase();
+        var link = item.querySelector("a"); // Remove previous selection
+
+        (_link$classList = link.classList).remove.apply(_link$classList, ACTIVE_CLASSES); // Hide selected values
+
+
+        if (values.indexOf(link.getAttribute(VALUE_ATTRIBUTE)) != -1) {
+          item.style.display = "none";
+          continue;
+        }
+
+        hasPossibleValues = true; // Check search length since we can trigger dropdown with arrow
+
+        var isMatched = search.length === 0 || text.indexOf(search) !== -1;
+
+        if (this.showAllSuggestions || this.suggestionsThreshold === 0 || isMatched) {
+          item.style.display = "list-item";
+          found = true;
+
+          if (!firstItem && isMatched) {
+            firstItem = item;
+          }
+        } else {
+          item.style.display = "none";
+        }
+      } // Always select first item
+
+
+      if (firstItem) {
+        var _firstItem$querySelec;
+
+        this._holderElement.classList.remove("is-invalid");
+
+        (_firstItem$querySelec = firstItem.querySelector("a").classList).add.apply(_firstItem$querySelec, ACTIVE_CLASSES);
+
+        firstItem.parentNode.scrollTop = firstItem.offsetTop;
+      } else {
+        // No item and we don't allow new items => error
+        if (!this.allowNew && !(search.length === 0 && !hasPossibleValues)) {
+          this._holderElement.classList.add("is-invalid");
+        } else if (this.validationRegex && this.isInvalid()) {
+          this._holderElement.classList.remove("is-invalid");
+        }
+      } // Remove dropdown if not found or to show validation message
+
+
+      if (!found || this.isInvalid()) {
+        this._dropElement.classList.remove("show");
+      } else {
+        // Or show it if necessary
+        this._dropElement.classList.add("show");
+
+        if (this.fullWidth) {
+          // Use full input width
+          this._dropElement.style.left = -1 + "px";
+          this._dropElement.style.width = this._holderElement.offsetWidth + "px";
+        } else {
+          // Position next to search input
+          var left = this._searchInput.offsetLeft; // Overflow right
+
+          var w = document.body.offsetWidth - 1; // avoid rounding issues
+
+          var scrollbarOffset = 30; // scrollbars are not taken into account
+
+          var wdiff = w - (left + this._dropElement.offsetWidth) - scrollbarOffset; // If the dropdowns goes out of the viewport, remove the diff from the left position
+
+          if (wdiff < 0) {
+            left = left + wdiff;
+          }
+
+          this._dropElement.style.left = left + "px"; // Overflow bottom
+
+          var h = document.body.offsetHeight;
+
+          var bottom = this._searchInput.getBoundingClientRect().y + window.pageYOffset + this._dropElement.offsetHeight;
+
+          var hdiff = h - bottom;
+
+          if (hdiff < 0) {
+            // We display above input
+            this._dropElement.style.transform = "translateY(calc(-100% - " + scrollbarOffset + "px))";
+          } else {
+            this._dropElement.style.transform = "none";
+          }
+        }
+      }
+    }
+    /**
+     * The element create with buildSuggestions
+     */
+
+  }, {
+    key: "_hideSuggestions",
+    value: function _hideSuggestions() {
+      this._dropElement.classList.remove("show");
+
+      this._holderElement.classList.remove("is-invalid");
+
+      this.removeActiveSelection();
+    }
+    /**
+     * @returns {Number}
+     */
+
+  }, {
+    key: "_getBootstrapVersion",
+    value: function _getBootstrapVersion() {
+      var ver = 5; // If we have jQuery and the tooltip plugin for BS4
+
+      if (window.jQuery && $.fn.tooltip != undefined && $.fn.tooltip.Constructor != undefined) {
+        ver = parseInt($.fn.tooltip.Constructor.VERSION.charAt(0));
+      }
+
+      return ver;
+    }
+    /**
+     * Find if label is already selected (based on attribute)
+     * @param {string} text
+     * @returns {boolean}
+     */
+
+  }, {
+    key: "_isSelected",
+    value: function _isSelected(text) {
+      var opt = Array.from(this._selectElement.querySelectorAll("option")).find(function (el) {
+        return el.textContent == text;
+      });
+
+      if (opt && opt.getAttribute("selected")) {
+        return true;
+      }
+
+      return false;
+    }
+    /**
+     * Checks if value matches a configured regex
+     * @param {string} value
+     * @returns {boolean}
+     */
+
+  }, {
+    key: "_validateRegex",
+    value: function _validateRegex(value) {
+      var regex = new RegExp(this.validationRegex.trim());
+      return regex.test(value);
+    }
+    /**
+     * @returns {HTMLElement}
+     */
+
+  }, {
+    key: "getActiveSelection",
+    value: function getActiveSelection() {
+      return this._dropElement.querySelector("a." + ACTIVE_CLASS);
+    }
+  }, {
+    key: "removeActiveSelection",
+    value: function removeActiveSelection() {
+      var selection = this.getActiveSelection();
+
+      if (selection) {
+        var _selection$classList;
+
+        (_selection$classList = selection.classList).remove.apply(_selection$classList, ACTIVE_CLASSES);
+      }
+    }
+  }, {
+    key: "removeAll",
+    value: function removeAll() {
+      var _this7 = this;
+
+      var items = this.getSelectedValues();
+      items.forEach(function (item) {
+        _this7.removeItem(item, true);
+      });
+
+      this._adjustWidth();
+    }
+    /**
+     * @param {boolean} noEvents
+     */
+
+  }, {
+    key: "removeLastItem",
+    value: function removeLastItem(noEvents) {
+      var items = this._containerElement.querySelectorAll("span");
+
+      if (!items.length) {
+        return;
+      }
+
+      var lastItem = items[items.length - 1];
+      this.removeItem(lastItem.getAttribute(VALUE_ATTRIBUTE), noEvents);
+    }
+    /**
+     * @returns {boolean}
+     */
+
+  }, {
+    key: "isDisabled",
+    value: function isDisabled() {
+      return this._selectElement.hasAttribute("disabled") || this._selectElement.disabled || this._selectElement.hasAttribute("readonly");
+    }
+    /**
+     * @returns {boolean}
+     */
+
+  }, {
+    key: "isInvalid",
+    value: function isInvalid() {
+      return this._holderElement.classList.contains("is-invalid");
+    }
+    /**
+     * @returns {boolean}
+     */
+
+  }, {
+    key: "isSingle",
+    value: function isSingle() {
+      return !this._selectElement.hasAttribute("multiple");
+    }
+    /**
+     * @param {string} text
+     * @param {string} value
+     * @returns {boolean}
+     */
+
+  }, {
+    key: "canAdd",
+    value: function canAdd(text) {
+      var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      if (!value) {
+        value = text;
+      } // Check invalid input
+
+
+      if (!text) {
+        return false;
+      } // Check disabled
+
+
+      if (this.isDisabled()) {
+        return false;
+      } // Check already selected input (single will replace)
+
+
+      if (!this.isSingle() && this._isSelected(text)) {
+        return false;
+      } // Check for max
+
+
+      if (this.max && this.getSelectedValues().length >= this.max) {
+        return false;
+      } // Check for regex
+
+
+      if (this.validationRegex && !this._validateRegex(text)) {
+        this._holderElement.classList.add("is-invalid");
+
+        return false;
+      }
+
+      return true;
+    }
+    /**
+     * You might want to use canAdd before to ensure the item is valid
+     * @param {string} text
+     * @param {string} value
+     * @param {object} data
+     */
+
+  }, {
+    key: "addItem",
+    value: function addItem(text) {
+      var _span$classList,
+          _this8 = this;
+
+      var value = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
+      if (!value) {
+        value = text;
+      } // Single items remove first
+
+
+      if (this.isSingle() && this.getSelectedValues().length) {
+        this.removeLastItem(true);
+      }
+
+      var bver = this._getBootstrapVersion();
+
+      var opt = this._selectElement.querySelector('option[value="' + value + '"]');
+
+      if (opt) {
+        data = opt.dataset;
+      } // create span
+
+
+      var html = text;
+      var span = document.createElement("span");
+      var classes = ["badge"];
+      var badgeStyle = this.badgeStyle;
+
+      if (data.badgeStyle) {
+        badgeStyle = data.badgeStyle;
+      }
+
+      if (data.badgeClass) {
+        var _classes;
+
+        (_classes = classes).push.apply(_classes, _toConsumableArray(data.badgeClass.split(" ")));
+      }
+
+      if (bver === 5) {
+        //https://getbootstrap.com/docs/5.1/components/badge/
+        classes = [].concat(_toConsumableArray(classes), ["me-2", "bg-" + badgeStyle, "mw-100"]);
+      } else {
+        // https://getbootstrap.com/docs/4.6/components/badge/
+        classes = [].concat(_toConsumableArray(classes), ["mr-2", "badge-" + badgeStyle]);
+      }
+
+      (_span$classList = span.classList).add.apply(_span$classList, _toConsumableArray(classes));
+
+      span.setAttribute(VALUE_ATTRIBUTE, value);
+
+      if (this.allowClear) {
+        var closeClass = classes.includes("text-dark") ? "btn-close" : "btn-close-white";
+        var btn = bver === 5 ? '<button type="button" style="font-size:0.65em" class="me-2 float-start btn-close ' + closeClass + '" aria-label="' + this.clearLabel + '"></button>' : '<button type="button" style="font-size:1em;float:left;text-shadow:none;color:currentColor;transform:scale(1.2)" class="mr-2 close" aria-label="' + this.clearLabel + '"><span aria-hidden="true">&times;</span></button>';
+        html = btn + html;
+      }
+
+      span.innerHTML = html;
+
+      this._containerElement.insertBefore(span, this._searchInput);
+
+      if (this.allowClear) {
+        span.querySelector("button").addEventListener("click", function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+
+          if (!_this8.isDisabled()) {
+            _this8.removeItem(value);
+
+            document.activeElement.blur();
+
+            _this8._adjustWidth();
+          }
+        });
+      } // we need to create a new option
+
+
+      if (!opt) {
+        opt = document.createElement("option");
+        opt.value = value;
+        opt.textContent = text; // innerText is not well supported by jsdom
+        // Pass along data provided
+
+        for (var _i2 = 0, _Object$entries2 = Object.entries(data); _i2 < _Object$entries2.length; _i2++) {
+          var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i2], 2),
+              key = _Object$entries2$_i[0],
+              _value = _Object$entries2$_i[1];
+
+          opt.dataset[key] = _value;
+        }
+
+        this._selectElement.appendChild(opt);
+      } // update select, we need to set attribute for option[selected]
+
+
+      opt.setAttribute("selected", "selected");
+      opt.selected = true; // Fire change event
+
+      if (this._fireEvents) {
+        this._selectElement.dispatchEvent(new Event("change", {
+          bubbles: true
+        }));
+      }
+    }
+    /**
+     * @param {string} value
+     * @param {boolean} value
+     */
+
+  }, {
+    key: "removeItem",
+    value: function removeItem(value) {
+      var noEvents = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+      var item = this._containerElement.querySelector("span[" + VALUE_ATTRIBUTE + '="' + value + '"]');
+
+      if (!item) {
+        return;
+      }
+
+      item.remove(); // update select
+
+      var opt = this._selectElement.querySelector('option[value="' + value + '"]');
+
+      if (opt) {
+        opt.removeAttribute("selected");
+        opt.selected = false; // Fire change event
+
+        if (this._fireEvents && !noEvents) {
+          this._selectElement.dispatchEvent(new Event("change", {
+            bubbles: true
+          }));
+        }
+      } // Make input visible
+
+
+      if (this._searchInput.style.visibility == "hidden" && this.max && this.getSelectedValues().length < this.max) {
+        this._searchInput.style.visibility = "visible";
+      }
+    }
+  }], [{
+    key: "init",
+    value: function init() {
+      var selector = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "select[multiple]";
+      var opts = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+      var list = document.querySelectorAll(selector);
+
+      for (var i = 0; i < list.length; i++) {
+        if (Tags.getInstance(list[i])) {
+          continue;
+        }
+
+        new Tags(list[i], opts);
+      }
+    }
+    /**
+     * @param {HTMLSelectElement} el
+     */
+
+  }, {
+    key: "getInstance",
+    value: function getInstance(el) {
+      if (INSTANCE_MAP.has(el)) {
+        return INSTANCE_MAP.get(el);
+      }
+    }
+    /**
+     * @param {Function} func
+     * @param {number} timeout
+     * @returns {Function}
+     */
+
+  }, {
+    key: "debounce",
+    value: function debounce(func) {
+      var _this9 = this;
+
+      var timeout = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 300;
+      var timer;
+      return function () {
+        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+          args[_key] = arguments[_key];
+        }
+
+        clearTimeout(timer);
+        timer = setTimeout(function () {
+          func.apply(_this9, args);
+        }, timeout);
+      };
+    }
+  }]);
+
+  return Tags;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (Tags);
 
 /***/ }),
 
@@ -40301,8 +41343,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Documents\Boolean\laravel-one-to-many\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Documents\Boolean\laravel-one-to-many\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\Documents\Boolean\laravel-many-to-many\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Documents\Boolean\laravel-many-to-many\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
