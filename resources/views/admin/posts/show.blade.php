@@ -5,13 +5,13 @@
 @section('content')
    <div class="container">
       <h1>{{ $post->title }}</h1>
-      <p>Author: <span style="color: #3962d1">{{ $post->user->name }}</span> | City: <span style="color: #3962d1">{{ $post->user->user_info->city }}</span></p>
-      <time>{{ date('d/m/Y', strtotime($post->date)) }}</time>
+      <div>Author: <span style="color: #3962d1">{{ $post->user->name }}</span> | City: <span style="color: #3962d1">{{ $post->user->user_info->city }}</span> | Published on: <span style="color: #3962d1"><time>{{ date('d/m/Y', strtotime($post->date)) }}</time></span></div>
+
       <p class="mt-4">{{ $post->content }}</p>
 
       <hr>
 
-      <div class="d-flex flex-wrap">
+      <div class="d-flex flex-wrap align-items-center">
          <span class="me-2">Tags:</span>
          @foreach ($post->tags as $tag)
             <span class="badge bg-primary fs-6 m-1">{{ $tag->name }}</span>
